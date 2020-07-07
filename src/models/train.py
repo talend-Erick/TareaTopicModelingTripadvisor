@@ -1,4 +1,3 @@
-import re
 import numpy as np
 import pandas as pd
 from pprint import pprint
@@ -17,19 +16,8 @@ from src.data.prepare_data import read_sample
 stop_words = stopwords.words('english')
 stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
 
-#df = pd.read_json('../../data/raw/newsgroups.json')
-# Convertir a una lista
-df = read_sample()
-data = df.content.values.tolist()
-
-# Eliminar emailsTodo lo que este antes y despues del arroba
-data = [re.sub(r'\S*@\S*\s?', '', sent) for sent in data]
-
-# Eliminar newlines
-data = [re.sub(r'\s+', ' ', sent) for sent in data]
-
-# Eliminar comillas
-data = [re.sub(r"\'", "", sent) for sent in data]
+# Obtener datos
+data = read_sample()
 
 data_words = list(sent_to_words(data))
 
