@@ -11,14 +11,15 @@ import spacy
 #### hacer referencias
 
 from src.features.utils import remove_stopwords, sent_to_words, make_bigrams, make_trigrams, lemmatization
-
+from src.data.prepare_data import read_sample
 #######finalizan referencias
 
 stop_words = stopwords.words('english')
 stop_words.extend(['from', 'subject', 're', 'edu', 'use'])
 
-df = pd.read_json('../../data/raw/newsgroups.json')
+#df = pd.read_json('../../data/raw/newsgroups.json')
 # Convertir a una lista
+df = read_sample()
 data = df.content.values.tolist()
 
 # Eliminar emailsTodo lo que este antes y despues del arroba
