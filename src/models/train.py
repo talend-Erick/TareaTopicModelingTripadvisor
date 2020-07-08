@@ -5,7 +5,7 @@ from nltk.corpus import stopwords
 
 #### hacer referencias
 
-from src.features.utils import remove_stopwords, sent_to_words, make_bigrams, make_trigrams, lemmatization
+from src.features.utils import  sent_to_words
 from src.features.tokenize import tokenize_classes
 from src.data.prepare_data import read_sample
 #######finalizan referencias

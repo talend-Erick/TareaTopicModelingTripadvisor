@@ -3,9 +3,10 @@ import pandas as pd
 from pandas import DataFrame
 
 def read_sample() -> DataFrame:
-    df = pd.read_json('../../data/raw/newsgroups.json')
-    data = df.content.values.tolist()
-
+    # se realizo cambio para tripadvisor
+    df = pd.read_csv('../../data/raw/reviews.csv')
+    data = df.review.values.tolist()
+    # fin de tripadvisor
     # Eliminar emailsTodo lo que este antes y despues del arroba
     data = [re.sub(r'\S*@\S*\s?', '', sent) for sent in data]
 
