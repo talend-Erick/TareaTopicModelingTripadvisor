@@ -1,7 +1,10 @@
+import logging
 import gensim
+import pickle
 import gensim.corpora as corpora
 from gensim.models import CoherenceModel
 from nltk.corpus import stopwords
+#logging.basicConfig(format='%(levelname)s:%(message)s', level=logging.DEBUG)
 
 #### hacer referencias
 
@@ -20,9 +23,10 @@ data_words = list(sent_to_words(data))
 
 #agregar tokenize
 data_lemmatized = tokenize_classes(data_words)
+print(data_lemmatized)
 # Creamos diccionario
 id2word = corpora.Dictionary(data_lemmatized)
-
+print(id2word)
 #for key, value in id2word.items():
  #   print(key, value)
 
@@ -37,7 +41,8 @@ corpus = [id2word.doc2bow(text) for text in texts]
 ################## MODELO ###################
 lda_model = gensim.models.ldamodel.LdaModel(corpus=corpus,
                                            id2word=id2word,
-                                           num_topics=20,
+                                          ## num_topics=20,
+                                           num_topics=10,
                                            random_state=100,
                                            update_every=1,
                                            chunksize=100,
@@ -61,3 +66,12 @@ print('\nPerplexity: ', lda_model.log_perplexity(corpus))  # a measure of how go
 #pyLDAvis.enable_notebook()
 #vis = pyLDAvis.gensim.prepare(lda_model, corpus, id2word)
 #vis
+with open('../../models/model.pkl','wb') as output_file:
+    pickle.dump(lda_model, output_file)
+
+with open('../../models/corpus.pkl','wb') as output_file:
+    pickle.dump(corpus, output_file)
+
+with open('../../models/id2word.pkl','wb') as output_file:
+    pickle.dump(id2word, output_file)
+#logging_info('SAVE model.pkl')
