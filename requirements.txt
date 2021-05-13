@@ -85,7 +85,7 @@ prompt-toolkit==3.0.5
 ptyprocess==0.6.0
 py==1.9.0
 pycparser @ file:///home/conda/feedstock_root/build_artifacts/pycparser_1593275161868/work
-pydantic==1.5.1
+pydantic==1.6.2
 Pygments==2.6.1
 pyLDAvis==2.1.2
 pyOpenSSL==19.1.0
